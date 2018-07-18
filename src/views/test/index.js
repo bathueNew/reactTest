@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import getGithubInfo from '../api/newAxios';
-import {DateFormat} from '../components/dateFormate'
+import getGithubInfo from '../../api/newAxios';
+// import {DateFormat} from '../../components/dateFormate'
 import { Input, message, Table, Icon, Divider } from 'antd';
-import sty from './index.scss';
+import sty from '../index.scss';
 const Search = Input.Search;
 export default class extends Component {
 	constructor(props) {
@@ -76,15 +76,17 @@ export default class extends Component {
 				title: 'created_at',
 				dataIndex: 'created_at',
                 key: 'etc',
-                render: (text) => <a href="javascript:;">{DateFormat(text)}</a>
+                // render: (text) => <a href="javascript:;">{DateFormat(text)}</a>
 			}
 		];
 		
 
 		return (
 			<div className={sty.searchWrap}>
+
+                <h1>第二个页面</h1>
 				<Search placeholder="Please enter the username" onSearch={(value) => this.getVal(value)} enterButton />
-				{/* <Table columns={columns} dataSource={data} /> */}
+				<Table columns={columns} dataSource={data} />
 			</div>
 		);
 	}

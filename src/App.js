@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import sty from './App.scss';
 import SearchTest from './views'
+import routers from './router/index';
+import { Route, Redirect, Switch } from 'react-router-dom';
 class App extends Component {
   render() {
     return (
@@ -13,7 +15,12 @@ class App extends Component {
         {/* <p className={sty.intro}>
           To get started, edit <code>src/App.js</code> and save to reload.
         </p> */}
-        <SearchTest />
+          <Switch>
+            {routers.map((route, index) => (
+              <Route key={index} path={route.path} exact={route.exact} component={route.component} />
+            ))}
+          </Switch>
+        {/* <SearchTest /> */}
       </div>
     );
   }
