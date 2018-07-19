@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 import getGithubInfo from '../api/newAxios';
 import {DateFormat} from '../components/dateFormate'
-import { Input, message, Table, Icon, Divider } from 'antd';
+import {Api} from '../api';
+import axios from "../api/secondAxios"
+import { Input, message, Table, Icon, Divider,Button } from 'antd';
 import sty from './index.scss';
 const Search = Input.Search;
 export default class extends Component {
@@ -46,7 +48,23 @@ export default class extends Component {
 		// })
 		this.serachInfo(v);
 	};
-
+	getPage = () => {
+		let params = {
+			pageSize:20,
+			pageIndex:1,
+		}
+		axios.get('Dns/v3/DnsWeb/GetScienceTipPages',params).then(res=>{
+			console.log(res)
+		})
+		// console.log(Api)
+		// Api.GetScienceTipPages({
+		// 	pageSize:20,
+		// 	pageIndex:1,
+		// 	token:'201e0f66171b470b85fb2f7203aa6fae'
+		// }).then(res=>{
+		// 	console.log(res)
+		// })
+	}
 	render() {
         const {data} = this.state;
         // console.log(data)
@@ -83,6 +101,7 @@ export default class extends Component {
 
 		return (
 			<div className={sty.searchWrap}>
+				<Button type="primary" onClick={this.getPage}>点击</Button>
 				<Search placeholder="Please enter the username" onSearch={(value) => this.getVal(value)} enterButton />
 				{/* <Table columns={columns} dataSource={data} /> */}
 			</div>
